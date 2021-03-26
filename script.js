@@ -1,88 +1,111 @@
 var today = moment();
 $("#currentDay").text(today.format("MMM Do, YYYY"));
 
-var saveBtns = document.querySelectorAll(".saveBtn");
+var saveBtns = $(".saveBtn");
 
-var nineEl = document.getElementById("nineEl");
-var nineSave = document.getElementById("nineSaved")
+var nineEl = $("#nineEl");
+var nineSave = $("#nineSaved")
 
-var tenEl = document.getElementById("tenEl");
-var tenSave = document.getElementById("tenSaved")
+var tenEl = $("#tenEl");
+var tenSave = $("#tenSaved")
 
-var elevenEl = document.getElementById("elevenEl");
-var elevenSave = document.getElementById("elevenSaved")
+var elevenEl = $("#elevenEl");
+var elevenSave = $("#elevenSaved")
 
-var twelveEl = document.getElementById("twelveEl");
-var twelveSave = document.getElementById("twelveSaved")
+var twelveEl = $("#twelveEl");
+var twelveSave = $("#twelveSaved")
 
-var oneEl = document.getElementById("oneEl");
-var oneSave = document.getElementById("oneSaved")
+var oneEl = $("#oneEl");
+var oneSave = $("#oneSaved")
 
-var twoEl = document.getElementById("twoEl");
-var twoSave = document.getElementById("twoSaved")
+var twoEl = $("#twoEl");
+var twoSave = $("#twoSaved")
 
-var threeEl = document.getElementById("threeEl");
-var threeSave = document.getElementById("threeSaved")
+var threeEl = $("#threeEl");
+var threeSave = $("#threeSaved")
 
-var fourEl = document.getElementById("fourEl");
-var fourSave = document.getElementById("fourSaved")
+var fourEl = $("#fourEl");
+var fourSave = $("#fourSaved")
 
-var fiveEl = document.getElementById("fiveEl");
-var fiveSave = document.getElementById("fiveSaved")
+var fiveEl = $("#fiveEl");
+var fiveSave = $("#fiveSaved")
 
 
-// for (button of saveBtns) {
-//     button.addEventListener("click", function (event) {
-//         var saved = event.target;
-//         var sibling = saved.closest("tr").children[1].children;
-//         console.log(sibling);
-//         localStorage.setItem("nine", sibling.value);
-//     })
-// }
-nineSave.addEventListener("click" , function (){
+for (button of saveBtns) {
+    button.addEventListener("click", function (event) {
+        var saved = event.target;
+        var sibling = saved.closest('input[type="text"]');
+        console.log(sibling);
+        // localStorage.setItem("nine", sibling.value);
+    })
+}
+nineSave.on("click" , function (){
     localStorage.setItem("nine", nineEl.value);
 })
 nineEl.value = localStorage.getItem("nine");
 
-tenSave.addEventListener("click" , function (){
+tenSave.on("click" , function (){
     localStorage.setItem("ten", tenEl.value);
 })
 tenEl.value = localStorage.getItem("ten");
 
-elevenSave.addEventListener("click" , function (){
+elevenSave.on("click" , function (){
     localStorage.setItem("eleven", elevenEl.value);
 })
 elevenEl.value = localStorage.getItem("eleven");
 
-twelveSave.addEventListener("click" , function (){
+twelveSave.on("click" , function (){
     localStorage.setItem("twelve", twelveEl.value);
 })
 twelveEl.value = localStorage.getItem("twelve");
 
-oneSave.addEventListener("click" , function (){
+oneSave.on("click" , function (){
     localStorage.setItem("one", oneEl.value);
 })
 oneEl.value = localStorage.getItem("one");
 
-twoSave.addEventListener("click" , function (){
+twoSave.on("click" , function (){
     localStorage.setItem("two", twoEl.value);
 })
 twoEl.value = localStorage.getItem("two");
 
-threeSave.addEventListener("click" , function (){
+threeSave.on("click" , function (){
     localStorage.setItem("three", threeEl.value);
 })
 threeEl.value = localStorage.getItem("three");
 
-fourSave.addEventListener("click" , function (){
+fourSave.on("click" , function (){
     localStorage.setItem("four", fourEl.value);
 })
 fourEl.value = localStorage.getItem("four");
 
-fiveSave.addEventListener("click" , function (){
+fiveSave.on("click" , function (){
     localStorage.setItem("five", fiveEl.value);
 })
 fiveEl.value = localStorage.getItem("five");
 
-var now = today.format('hh')
-console.log(now)
+var now = today.format('H')
+
+
+var tableRows = $(".tableRow");
+
+
+
+
+
+var hour = moment().hour();
+
+
+tableRows.each(function (index, ele) {
+    var calHour = parseInt(ele.id);
+  
+    if (hour > calHour) {
+        
+        $(ele).addClass("past");
+    } else if (hour < calHour){
+        $(ele).addClass("future");
+    } else {
+        $(ele).addClass("present");
+    }
+    
+})
