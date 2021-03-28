@@ -9,9 +9,11 @@ var tableRows = $(".tableRow");
 var valuesArr = [];
 
 
+// Set items in local storage ---------------------------------------------- 
+
+
 saveBtns.each(function (index, ele) {
     ele.addEventListener("click", function () {
-
         var object = {
             position: index,
             value: inputs[index].value,   
@@ -21,6 +23,9 @@ saveBtns.each(function (index, ele) {
         localStorage.setItem("Key", JSON.stringify(valuesArr));   
     });
 });
+
+// Get items from local storage -------------------------------------------
+
 var savedInputs = JSON.parse(localStorage.getItem("Key")) || [];
 
 for (var i = 0; i <savedInputs.length; i++){
@@ -30,6 +35,8 @@ for (var i = 0; i <savedInputs.length; i++){
         }
     });
 };
+
+// Change table row class based upon time ---------------------------------------
 
 tableRows.each(function (index, ele) {
     var calHour = parseInt(ele.id);
